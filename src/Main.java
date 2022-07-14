@@ -3,40 +3,21 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        boolean oRoR = true;
         Scanner scanner = new Scanner(System.in);
-
         ReportManager reportManager = new ReportManager(2021);
 
-
-        while (true) {
+        while (oRoR) {
             printMenu();
             int command = scanner.nextInt();
-            if (command == 1) {
-                reportManager.monthlyReport.readFileMonth();
-            } else if (command == 2) {
-                reportManager.yearlyReport.readFileYearly();
-            } else if (command == 3) {
-                try {
-                    reportManager.compareReports();
-                } catch (NullPointerException exception) {
-                    System.out.println("Невозможно сравнить файлы с отчётами. Возможно, файлы еще не считаны! Используя меню считайте файлы еще раз!");
-                }
-            } else if (command == 4) {
-                reportManager.monthlyReport.printStaticMonthReport();
-            } else if (command == 5) {
-                try {
-                    reportManager.yearlyReport.profit();
-                    reportManager.yearlyReport.averageExpensesYear();
-                    reportManager.yearlyReport.averageIncomeYear();
-                } catch (NullPointerException exception) {
-                    System.out.println("Невозможно прочитать файл с годовым отчётом. " +
-                            "Возможно, файл не еще не прочитан и не сохранен! Попробуйте считайте файл еще раз!.");
-                }
-            } else if (command == 0) {
-                System.out.println("Выход");
-                break;
-            } else {
-                System.out.println("Извините, такой команды пока нет.");
+            switch (command){
+                case 1: reportManager.readFileMonth(); break;
+                case 2: reportManager.readFileYearly(); break;
+                case 3: reportManager.compareReports(); break;
+                case 4: reportManager.printStaticMonthReport(); break;
+                case 5: reportManager.printStatisticOfYear(); break;
+                case 0: System.out.println("Выход"); oRoR = false; break;
+                default: System.out.println("Извините, такой команды пока нет."); oRoR = false; break;
             }
         }
     }
