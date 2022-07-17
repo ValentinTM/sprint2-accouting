@@ -3,11 +3,11 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        boolean oRoR = true;
+
         Scanner scanner = new Scanner(System.in);
         ReportManager reportManager = new ReportManager(2021);
 
-        while (oRoR) {
+        while (true) {
             printMenu();
             int command = scanner.nextInt();
             switch (command){
@@ -16,8 +16,8 @@ public class Main {
                 case 3: reportManager.compareReports(); break;
                 case 4: reportManager.printStaticMonthReport(); break;
                 case 5: reportManager.printStatisticOfYear(); break;
-                case 0: System.out.println("Выход"); oRoR = false; break;
-                default: System.out.println("Извините, такой команды пока нет."); oRoR = false; break;
+                case 0: System.out.println("Выход"); return;
+                default: System.out.println("Извините, такой команды пока нет."); break;
             }
         }
     }
